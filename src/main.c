@@ -118,8 +118,9 @@ void executeCommand(int clientSocket, const char* command) {
     } else if (strncmp(command, "echo ", 5) == 0) {
                 executeHelpCommand(clientSocket);
     } else if (strcmp(command, "quit") == 0) {
-        executeHelpCommand(clientSocket);
+       // executeQuitCommand(clientSocket);
+        printf("Not defined");
     } else {
-        executeHelpCommand(clientSocket);
+        executeEchoCommand(clientSocket);
     }
 }
