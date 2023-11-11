@@ -73,6 +73,37 @@ build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/main.c.ob
   TARGET_IMPLIB = libNexus.dll.a
   TARGET_PDB = Nexus.exe.dbg
 
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target WS2_32.lib
+
+
+#############################################
+# Order-only phony target for WS2_32.lib
+
+build cmake_object_order_depends_target_WS2_32.lib: phony || CMakeFiles/WS2_32.lib.dir
+
+build CMakeFiles/WS2_32.lib.dir/ws2_32_lib.c.obj: C_COMPILER__WS2_32.2elib_unscanned_Debug C$:/Users/Arch64/CLionProjects/Nexus/ws2_32_lib.c || cmake_object_order_depends_target_WS2_32.lib
+  DEP_FILE = CMakeFiles\WS2_32.lib.dir\ws2_32_lib.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\WS2_32.lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\WS2_32.lib.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target WS2_32.lib
+
+
+#############################################
+# Link the static library libWS2_32.lib.a
+
+build libWS2_32.lib.a: C_STATIC_LIBRARY_LINKER__WS2_32.2elib_Debug CMakeFiles/WS2_32.lib.dir/ws2_32_lib.c.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles\WS2_32.lib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = libWS2_32.lib.a
+  TARGET_PDB = WS2_32.lib.a.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -101,6 +132,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build Nexus: phony Nexus.exe
 
+build WS2_32.lib: phony libWS2_32.lib.a
+
 # =============================================================================
 # Folder targets.
 
@@ -109,7 +142,7 @@ build Nexus: phony Nexus.exe
 #############################################
 # Folder: C:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug
 
-build all: phony Nexus.exe
+build all: phony Nexus.exe libWS2_32.lib.a
 
 # =============================================================================
 # Built-in targets
