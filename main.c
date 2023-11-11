@@ -1,25 +1,20 @@
 #include <stdio.h>
-#include <winsock2.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
 
 #define PORT 23
 #define MAX_CLIENTS 5
 #define BUFFER_SIZE 1024
 
-void handleClient(SOCKET clientSocket);
+void handleClient(int clientSocket);
 
 int main() {
-    WSADATA wsaData;
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        fprintf(stderr, "Failed to initialize Winsock\n");
-        return 1;
-    }
-
-    SOCKET serverSocket
-    = socket(AF_INET, SOCK_STREAM, 0);
-    if (serverSocket == INVALID_SOCKET) {
-        fprintf(stderr, "Failed to create socket\n");
-        WSACleanup();
-        return 1;
+    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket == -1) {
+        perror("Socket creation failed");
+        exit(EXIT_FAILURE);
     }
 
     struct sockaddr_in serverAddr;
@@ -27,29 +22,26 @@ int main() {
     serverAddr.sin_addr.s_addr = INADDR_ANY;
     serverAddr.sin_port = htons(PORT);
 
-    if (bind(serverSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
-        fprintf(stderr, "Bind failed with error: %d\n", WSAGetLastError());
-        closesocket(serverSocket);
-        WSACleanup();
-        return 1;
+    if (bind(serverSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1) {
+        perror("Bind failed");
+        close(serverSocket);
+        exit(EXIT_FAILURE);
     }
 
-    if (listen(serverSocket, MAX_CLIENTS) == SOCKET_ERROR) {
-        fprintf(stderr, "Listen failed with error: %d\n", WSAGetLastError());
-        closesocket(serverSocket);
-        WSACleanup();
-        return 1;
+    if (listen(serverSocket, MAX_CLIENTS) == -1) {
+        perror("Listen failed");
+        close(serverSocket);
+        exit(EXIT_FAILURE);
     }
 
     printf("Telnet server is listening on port %d...\n", PORT);
 
     while (1) {
-        SOCKET clientSocket = accept(serverSocket, NULL, NULL);
-        if (clientSocket == INVALID_SOCKET) {
-            fprintf(stderr, "Accept failed with error: %d\n", WSAGetLastError());
-            closesocket(serverSocket);
-            WSACleanup();
-            return 1;
+        int clientSocket = accept(serverSocket, NULL, NULL);
+        if (clientSocket == -1) {
+            perror("Accept failed");
+            close(serverSocket);
+            exit(EXIT_FAILURE);
         }
 
         printf("Client connected\n");
@@ -58,27 +50,24 @@ int main() {
         handleClient(clientSocket);
 
         // Close the client socket after handling the connection
-        closesocket(clientSocket);
+        close(clientSocket);
 
         printf("Client disconnected\n");
     }
 
-    // Cleanup Winsock
-    closesocket(serverSocket);
-    WSACleanup();
+    // Cleanup
+    close(serverSocket);
 
     return 0;
 }
 
-void handleClient(SOCKET clientSocket) {
+void handleClient(int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
 
     // Send a welcome message to the client
     const char* welcomeMsg = "Welcome to the simple Telnet server!\r\n";
-    const char* banner = "Banner there it goes ";
     send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
-    send(clientSocket, banner, strlen(banner), 0);
 
     while (1) {
         // Receive data from the client
