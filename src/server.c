@@ -5,12 +5,13 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include "headers/cman.h"
+#include "../commands/headers/help_command.h"
 
 #define PORT 23
 #define MAX_CLIENTS 5
 #define BUFFER_SIZE 1024
 
-void handleClient(int clientSocket);
+void handleClient(int serverSocket, int clientSocket);
 
 int main() {
     // Initialize the command handler
@@ -20,7 +21,30 @@ int main() {
     registerCommand("help", executeHelpCommand);
     // Register other commands similarly...
 
-    // ... (unchanged code)
+    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket == -1) {
+        perror("Socket creation failed");
+        exit(EXIT_FAILURE);
+    }
+
+    struct sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(PORT);
+
+    if (bind(serverSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1) {
+        perror("Bind failed");
+        close(serverSocket);
+        exit(EXIT_FAILURE);
+    }
+
+    if (listen(serverSocket, MAX_CLIENTS) == -1) {
+        perror("Listen failed");
+        close(serverSocket);
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Telnet server is listening on port %d...\n", PORT);
 
     while (1) {
         int clientSocket = accept(serverSocket, NULL, NULL);
@@ -33,7 +57,7 @@ int main() {
         printf("Client connected\n");
 
         // Handle the client in a separate function
-        handleClient(clientSocket);
+        handleClient(serverSocket, clientSocket);
 
         // Close the client socket after handling the connection
         close(clientSocket);
@@ -47,7 +71,7 @@ int main() {
     return 0;
 }
 
-void handleClient(int clientSocket) {
+void handleClient(int serverSocket, int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
 
