@@ -1,4 +1,3 @@
 C:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug/CMakeFiles/Nexus.dir
-C:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug/CMakeFiles/WS2_32.lib.dir
 C:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -81,5 +81,10 @@ void handleClient(int clientSocket) {
         // Process the received data (you can implement your Telnet server logic here)
         // For simplicity, we'll just echo the received data back to the client
         send(clientSocket, buffer, bytesRead, 0);
+
+        buffer[bytesRead] = '\0';
+        printf("Received from client: %s", buffer);
     }
+
+
 }

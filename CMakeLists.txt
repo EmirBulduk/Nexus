@@ -3,5 +3,5 @@ project(Nexus C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(Nexus main.c
-        main.c)
+add_executable(Nexus src/main.c
+        src/main.c)

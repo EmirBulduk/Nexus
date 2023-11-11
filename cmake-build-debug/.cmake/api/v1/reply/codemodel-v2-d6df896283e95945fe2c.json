@@ -15,8 +15,7 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0,
-						1
+						0
 					]
 				}
 			],
@@ -31,8 +30,7 @@
 					"name" : "Nexus",
 					"targetIndexes" : 
 					[
-						0,
-						1
+						0
 					]
 				}
 			],
@@ -41,15 +39,8 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Nexus::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Nexus-Debug-c59aabe1e726292e6824.json",
+					"jsonFile" : "target-Nexus-Debug-82ec74e42de180193127.json",
 					"name" : "Nexus",
-					"projectIndex" : 0
-				},
-				{
-					"directoryIndex" : 0,
-					"id" : "WS2_32.lib::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-WS2_32.lib-Debug-6e794d5af042e56fbac0.json",
-					"name" : "WS2_32.lib",
 					"projectIndex" : 0
 				}
 			]
