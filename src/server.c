@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include "headers/cman.h"
+#include "../src/headers/cman.h"
 #include "../commands/headers/help_command.h"
 
 #define PORT 23

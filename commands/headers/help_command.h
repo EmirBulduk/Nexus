@@ -5,6 +5,6 @@
 #ifndef HELP_COMMAND_H
 #define HELP_COMMAND_H
 
-#include "..\src\headers\cman.h"
+#include "/src/headers/cman.h"
 
 #endif // HELP_COMMAND_H
