@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "headers/cman.h"
+
 #define MAX_COMMANDS 10
 
 // Array to store registered commands
