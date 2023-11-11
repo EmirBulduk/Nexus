@@ -3,12 +3,16 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include "headers/cman.h"
 
-#define PORT 23
+#define PORT 55
 #define MAX_CLIENTS 5
 #define BUFFER_SIZE 1024
 
 void handleClient(int clientSocket);
+
+
+
 
 int main() {
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -78,13 +82,44 @@ void handleClient(int clientSocket) {
             break;
         }
 
-        // Process the received data (you can implement your Telnet server logic here)
-        // For simplicity, we'll just echo the received data back to the client
-        send(clientSocket, buffer, bytesRead, 0);
+        // Process the received data
+        buffer[bytesRead] = '\0'; // Null-terminate the received data
 
-        buffer[bytesRead] = '\0';
-        printf("Received from client: %s", buffer);
+        // Check if the received data contains a newline character
+        char* newlinePos = strchr(buffer, '\n');
+        if (newlinePos != NULL) {
+            // If a newline character is found, treat it as the end of a line
+            *newlinePos = '\0'; // Null-terminate at the newline position
+            send(clientSocket, buffer, strlen(buffer), 0); // Echo back the line
+            printf("Recived Command: %s\n", buffer);
+
+            //şimdi bu gelen komutun var olup olmadığını kontroll edeceğiz
+
+
+
+        } else {
+            // If no newline character is found, continue receiving data
+            send(clientSocket, buffer, bytesRead, 0);
+        }
+
+
     }
 
+}
 
+void executeCommand(int clientSocket, const char* command) {
+    if (strcmp(command, "help") == 0) {
+        const char* helpMsg = "Available commands:\r\n"
+                              "help - Display this help message\r\n"
+                              "echo [message] - Display the provided message\r\n"
+                              "quit - Disconnect from the server\r\n";
+
+        send(clientSocket, helpMsg, strlen(helpMsg), 0);
+    } else if (strncmp(command, "echo ", 5) == 0) {
+                executeHelpCommand(clientSocket);
+    } else if (strcmp(command, "quit") == 0) {
+        executeHelpCommand(clientSocket);
+    } else {
+        executeHelpCommand(clientSocket);
+    }
 }
