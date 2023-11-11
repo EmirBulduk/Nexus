@@ -3,8 +3,10 @@
 //
 
 #include "headers/echo_command.h"
-
+#include "../src/headers/cman.h"
 #include <string.h>
+
+
 
 void executeEchoCommand(int clientSocket, const char* args) {
 

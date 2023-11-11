@@ -5,6 +5,8 @@
 #ifndef HELP_COMMAND_H
 #define HELP_COMMAND_H
 
+#include "../src/headers/cman.h"
+
 
 void executeHelpCommand(int clientSocket, const char* args);
 
