@@ -5,7 +5,7 @@
 #ifndef ECHO_COMMAND_H
 #define ECHO_COMMAND_H
 
-#include "src/headers/cman.h"
+#include "cman.h"
 
 void executeEchoCommand(int clientSocket, const char* args);
 

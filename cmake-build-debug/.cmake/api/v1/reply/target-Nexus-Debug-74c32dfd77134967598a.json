@@ -135,7 +135,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/commands/headers/help_command.h",
+			"path" : "src/headers/help_command.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -146,7 +146,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/commands/headers/echo_command.h",
+			"path" : "src/headers/echo_command.h",
 			"sourceGroupIndex" : 1
 		}
 	],
