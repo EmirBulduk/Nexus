@@ -1,5 +1,3 @@
-# Nexus
+#Nexus
 
- ![](https://img.shields.io/badge/ATTACK%20OFFENSIVE%20%2F%20dlr%20%2F%20Cnc%20%2F%20Botnet%20%2F%20Des-Red)
-
- 
+ ![](https://img.shields.io/badge/Cyber%20Security-Consultant%20%2F%20Trainer%20%2F%20Engineer%20%2F%20Architect%20%2F%20Developer-red)
