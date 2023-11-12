@@ -3,7 +3,7 @@
 #include <string.h>  // Include the header for 'strlen'
 #include <sys/socket.h>
 
-const char* mf= "aaqweqwe";
+const char* mf= "Echo. \r\n";
 
 void executeEchoCommand(int clientSocket, const char* mf) {
     send(clientSocket, mf, strlen(mf), 0);

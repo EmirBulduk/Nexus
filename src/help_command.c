@@ -1,11 +1,12 @@
+// help_command.c
 #include "help_command.h"
-#include <string.h>  // Include the header for 'strlen'
+#include <string.h>
 #include <sys/socket.h>
 
-const char* tf= "aaqweqwewerwetqretqg";
+const char* helpMsg = "This is the help message. Type 'echo' for an example.\r\n";
 
-void executeHelpCommand(int clientSocket, const char* tf) {
-    send(clientSocket, tf, strlen(tf), 0);
+void executeHelpCommand(int clientSocket) {
+    send(clientSocket, helpMsg, strlen(helpMsg), 0);
 }
 
 // Register the command during initialization
