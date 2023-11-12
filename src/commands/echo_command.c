@@ -2,7 +2,7 @@
 // Created by Arch64 on 11.11.2023.
 //
 
-#include "echo_command.h"
+#include "../headers/echo_command.h"
 #include <string.h>
 
 
