@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <sys/socket.h>  // Include the header for 'send'
 
 #define MAX_COMMANDS 10
 

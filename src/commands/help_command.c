@@ -1,6 +1,7 @@
 // help_command.c
 #include "../headers/help_command.h"
 #include <string.h>
+#include <sys/socket.h>  // Include the header for 'send'
 
 
 void executeHelpCommand(int clientSocket, const char* args) {
@@ -18,3 +19,4 @@ __attribute__((constructor))
 void registerHelpCommand() {
     registerCommand("help", executeHelpCommand);
 }
+
