@@ -1,25 +1,18 @@
-//
-// Created by Arch64 on 11.11.2023.
-//
-
+// echo_command.c
+// ... (other includes)
 #include "../headers/echo_command.h"
-#include <string.h>
-
-
-
-#ifdef _WIN32
-#include <winsock2.h>
-#pragma comment(lib, "ws2_32.lib") // Link with ws2_32.lib
-#else
 #include <sys/socket.h>
-#endif
+
+// ... (other functions)
 
 void executeEchoCommand(int clientSocket, const char* args) {
     const char*  mf = "hello mf ";
 
+    // Ensure proper inclusion of headers for the send function
     send(clientSocket, mf, strlen(mf), 0);
-
 }
+
+// ... (other functions)
 
 // Register the command during initialization
 __attribute__((constructor))

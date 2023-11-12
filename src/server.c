@@ -15,6 +15,8 @@
 void handleClient(int serverSocket, int clientSocket);
 
 int main() {
+    int serverSocket;  // Declare serverSocket before using it
+
     // Initialize the command handler
     initializeCommandHandler();
 
@@ -23,7 +25,7 @@ int main() {
     registerCommand("echo", executeEchoCommand);
     // Register other commands similarly...
 
-    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket == -1) {
         perror("Socket creation failed");
         exit(EXIT_FAILURE);
