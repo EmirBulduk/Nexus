@@ -4,9 +4,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include "headers/cman.h"
-#include "headers/help_command.h"
-#include "headers/echo_command.h"
+#include "cman.h"
+#include "help_command.h"
+#include "echo_command.h"
 
 #define PORT 23
 #define MAX_CLIENTS 5

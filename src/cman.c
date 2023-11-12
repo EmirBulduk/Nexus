@@ -1,5 +1,5 @@
 // commands.c
-#include "headers/cman.h"
+#include "cman.h"
 
 #include <stdio.h>
 #include <string.h>
