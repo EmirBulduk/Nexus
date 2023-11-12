@@ -12,10 +12,18 @@
 static Command commands[MAX_COMMANDS];
 static int numCommands = 0;
 
+
+static int commandCount = 0;
+
+
 // Function to initialize the command handler
 void initializeCommandHandler() {
     // Initialize the array of commands
     numCommands = 0;
+    commandCount = 0;
+
+
+
 }
 
 // Function to register a command
@@ -33,12 +41,21 @@ bool registerCommand(const char* name, CommandHandler handler) {
 
         commands[numCommands].handler = handler;
         numCommands++;
+
+        commandCount++;
+
+
         return true;
     } else {
         fprintf(stderr, "Maximum number of commands reached\n");
         return false;
     }
 }
+
+void getCommandCount(int* countPtr) {
+    *countPtr = commandCount;
+}
+
 
 
 // Function to execute a command
@@ -61,3 +78,4 @@ void executeCommand(int clientSocket, const char* command) {
     const char* errorMsg = "Invalid command. Type 'help' for a list of commands.\r\n";
     send(clientSocket, errorMsg, strlen(errorMsg), 0);
 }
+
