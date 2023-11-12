@@ -1,5 +1,5 @@
 // help_command.c
-#include "headers/help_command.h"
+#include "help_command.h"
 #include <string.h>
 
 void executeHelpCommand(int clientSocket, const char* args) {

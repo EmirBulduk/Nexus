@@ -8,6 +8,6 @@ add_executable(Nexus src/server.c
         src/cman.c
         src/headers/cman.h
         src/commands/help_command.c
-        src/commands/headers/help_command.h
+        src/headers/help_command.h
         src/commands/echo_command.c
-        src/commands/headers/echo_command.h)
+        src/headers/echo_command.h)

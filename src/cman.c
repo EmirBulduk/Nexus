@@ -1,11 +1,11 @@
 // commands.c
-#include "headers/cman.h"
+#include "commands/cman.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
 
-#include "headers/cman.h"
+#include "commands/cman.h"
 
 #define MAX_COMMANDS 10
 
