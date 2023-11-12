@@ -19,10 +19,18 @@ void initializeCommandHandler() {
 }
 
 // Function to register a command
+// Function to register a command
 bool registerCommand(const char* name, CommandHandler handler) {
     if (numCommands < MAX_COMMANDS) {
-        // Register the command in the array
-        commands[numCommands].name = name;
+        // Allocate memory for the command name and copy the string
+        commands[numCommands].name = strdup(name);
+
+        if (commands[numCommands].name == NULL) {
+            // Handle memory allocation failure
+            fprintf(stderr, "Memory allocation error\n");
+            return false;
+        }
+
         commands[numCommands].handler = handler;
         numCommands++;
         return true;
@@ -31,6 +39,7 @@ bool registerCommand(const char* name, CommandHandler handler) {
         return false;
     }
 }
+
 
 // Function to execute a command
 void executeCommand(int clientSocket, const char* command) {

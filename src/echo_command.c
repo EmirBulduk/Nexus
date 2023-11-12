@@ -1,16 +1,16 @@
-// echo_command.c
+// help_command.c
 #include "echo_command.h"
-#include <string.h>  // Include the header for 'strlen'
+#include <string.h>
 #include <sys/socket.h>
 
-const char* mf= "Echo. \r\n";
+const char* echoMsg = "This is the help message. Type 'echo' for an example.\r\n";
 
-void executeEchoCommand(int clientSocket, const char* mf) {
-    send(clientSocket, mf, strlen(mf), 0);
+void executeEchoCommand(int clientSocket, const char* args) {
+    send(clientSocket, echoMsg, strlen(echoMsg), 0);
 }
 
 // Register the command during initialization
 __attribute__((constructor))
-void registerEchoCommand() {
-    registerCommand("echo", executeEchoCommand);
+void registerHelpCommand() {
+    registerCommand("help", executeEchoCommand);
 }

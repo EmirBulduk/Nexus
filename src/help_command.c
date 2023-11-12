@@ -5,7 +5,7 @@
 
 const char* helpMsg = "This is the help message. Type 'echo' for an example.\r\n";
 
-void executeHelpCommand(int clientSocket) {
+void executeHelpCommand(int clientSocket, const char* args) {
     send(clientSocket, helpMsg, strlen(helpMsg), 0);
 }
 
