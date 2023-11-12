@@ -4,8 +4,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include "commands/cman.h"
-#include "commands/help_command.h"
+#include "headers/cman.h"
+#include "headers/help_command.h"
+#include "headers/echo_command.h"
 
 #define PORT 23
 #define MAX_CLIENTS 5
@@ -19,6 +20,7 @@ int main() {
 
     // Register commands
     registerCommand("help", executeHelpCommand);
+    registerCommand("echo", executeEchoCommand);
     // Register other commands similarly...
 
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
