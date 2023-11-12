@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include "../src/headers/cman.h"
-#include "../commands/headers/help_command.h"
+#include "commands/headers/help_command.h"
 
 #define PORT 23
 #define MAX_CLIENTS 5
