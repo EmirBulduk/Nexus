@@ -11,6 +11,6 @@ void executeEchoCommand(int clientSocket, const char* args) {
 
 // Register the command during initialization
 __attribute__((constructor))
-void registerHelpCommand() {
+void registerEchoCommand() {
     registerCommand("help", executeEchoCommand);
 }
