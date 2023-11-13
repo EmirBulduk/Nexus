@@ -11,6 +11,7 @@
 #include "commands/help_command.h"
 
 #define PORT 23
+#define TCP 8080
 #define MAX_CLIENTS 5
 #define BUFFER_SIZE 1024
 
@@ -143,6 +144,20 @@ void handleClient(int serverSocket, int clientSocket) {
 
     if (isValidUser) {
         while (1) {
+
+            char* banner =
+
+                "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
+                "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
+                "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
+                "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
+                "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
+                "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
+                "      --**Welcome To Nexus Network**--- ";
+
+
+
+            send(clientSocket, banner, strlen(banner), 0);
             // Receive data from the client
             bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 
