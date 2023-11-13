@@ -1,4 +1,6 @@
 // server.c
+// this is the temporary main file for now
+//all the communications, connections and command execution is directed in here
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,6 +15,14 @@
 #define BUFFER_SIZE 1024
 
 void handleClient(int serverSocket, int clientSocket);
+
+
+int com() {
+
+    printf("aaaaa\n");
+    return 0;
+
+}
 
 int main() {
     int serverSocket;  // Declare serverSocket before using it
@@ -48,7 +58,10 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    printf("Telnet server is listening on port %d...\n", PORT);
+    printf("Nexus Net Starting ... \n");
+    printf("TELNET PORT : %d\n", PORT);
+    printf("COMMUNICATIONS STARTING ...\n");
+    com();
 
     while (1) {
         int clientSocket = accept(serverSocket, NULL, NULL);
@@ -79,33 +92,87 @@ void handleClient(int serverSocket, int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
 
+    typedef struct {
+        char username[50];
+        char password[50];
+    } User;
+
     // Send a welcome message to the client
-    const char* welcomeMsg = "Welcome to the simple Telnet server!\r\n";
+    const char* welcomeMsg = "Nexus\r\n";
     send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
 
-    while (1) {
-        // Receive data from the client
-        bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 
-        if (bytesRead <= 0) {
-            // If the client disconnects or an error occurs, break from the loop
+    // Assuming MAX_USERS is the maximum number of users your system can handle
+    #define MAX_USERS 10
+    User users[MAX_USERS] = {
+        {"admin", "admin"},
+        // Add more users as needed
+    };
+    // Send a prompt for the username
+    const char* usernamePrompt = "user: ";
+    send(clientSocket, usernamePrompt, strlen(usernamePrompt), 0);
+
+    // Receive the username from the client
+    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+    buffer[bytesRead] = '\0'; // Null-terminate the received data
+
+    // Check if the username is valid
+    char* username = buffer;
+
+    // Send a prompt for the password
+    const char* passwordPrompt = "password: ";
+    send(clientSocket, passwordPrompt, strlen(passwordPrompt), 0);
+
+    // Receive the password from the client
+    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+    buffer[bytesRead] = '\0'; // Null-terminate the received data
+
+    // Check if the password is valid
+    char* password = buffer;
+
+
+
+
+    int isValidUser = 0;
+    for (int i = 0; i < MAX_USERS; i++) {
+        if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
+            isValidUser = 1;
             break;
         }
-
-        // Process the received data
-        buffer[bytesRead] = '\0'; // Null-terminate the received data
-
-        // Check if the received data contains a newline character
-        char* newlinePos = strchr(buffer, '\n');
-        if (newlinePos != NULL) {
-            // If a newline character is found, treat it as the end of a line
-            *newlinePos = '\0'; // Null-terminate at the newline position
-
-            // Execute the command using the command handler
-            executeCommand(clientSocket, buffer);
-        } else {
-            // If no newline character is found, continue receiving data
-            send(clientSocket, buffer, bytesRead, 0);
-        }
     }
+
+    if (isValidUser) {
+        while (1) {
+            // Receive data from the client
+            bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+
+            if (bytesRead <= 0) {
+                // If the client disconnects or an error occurs, break from the loop
+                break;
+            }
+
+            // Process the received data
+            buffer[bytesRead] = '\0'; // Null-terminate the received data
+
+            // Check if the received data contains a newline character
+            char* newlinePos = strchr(buffer, '\n');
+            if (newlinePos != NULL) {
+                // If a newline character is found, treat it as the end of a line
+                *newlinePos = '\0'; // Null-terminate at the newline position
+
+                // Execute the command using the command handler
+                executeCommand(clientSocket, buffer);
+            }
+        }
+    } else {
+        // Invalid credentials, you can send a message to the client and handle it accordingly.
+        const char* errorMsg = "Invalid username or password. Please try again.\r\n";
+        send(clientSocket, errorMsg, strlen(errorMsg), 0);
+        // Optionally, you can close the connection or implement other actions.
+    }
+
+
+
+
 }
+

@@ -22,4 +22,9 @@ bool registerCommand(const char* name, CommandHandler handler);
 // Function to execute a command
 void executeCommand(int clientSocket, const char* command);
 
+
+//helps us counting commands
+void getCommandCount(int* countPtr);
+
+
 #endif
