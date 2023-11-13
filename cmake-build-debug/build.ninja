@@ -73,6 +73,12 @@ build CMakeFiles/Nexus.dir/src/commands/echo_command.c.obj: C_COMPILER__Nexus_un
   OBJECT_DIR = CMakeFiles\Nexus.dir
   OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\src\commands
 
+build CMakeFiles/Nexus.dir/scanner/scanner.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/Arch64/CLionProjects/Nexus/scanner/scanner.c || cmake_object_order_depends_target_Nexus
+  DEP_FILE = CMakeFiles\Nexus.dir\scanner\scanner.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Nexus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\scanner
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Nexus
@@ -81,7 +87,7 @@ build CMakeFiles/Nexus.dir/src/commands/echo_command.c.obj: C_COMPILER__Nexus_un
 #############################################
 # Link the executable Nexus.exe
 
-build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/src/server.c.obj CMakeFiles/Nexus.dir/src/commands/cman.c.obj CMakeFiles/Nexus.dir/src/commands/help_command.c.obj CMakeFiles/Nexus.dir/src/commands/echo_command.c.obj
+build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/src/server.c.obj CMakeFiles/Nexus.dir/src/commands/cman.c.obj CMakeFiles/Nexus.dir/src/commands/help_command.c.obj CMakeFiles/Nexus.dir/src/commands/echo_command.c.obj CMakeFiles/Nexus.dir/scanner/scanner.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Nexus.dir

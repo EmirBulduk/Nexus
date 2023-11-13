@@ -10,4 +10,6 @@ add_executable(Nexus src/server.c
         src/commands/help_command.c
         src/commands/help_command.h
         src/commands/echo_command.c
-        src/commands/echo_command.h)
+        src/commands/echo_command.h
+        scanner/scanner.c
+        scanner/scanner.h)
