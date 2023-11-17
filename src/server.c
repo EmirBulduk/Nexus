@@ -28,6 +28,24 @@ int con() {
     return 0;
 }
 
+
+// Assuming MAX_USERS is the maximum number of users your system can handle
+#define MAX_USERS 10
+
+typedef struct {
+    char username[20];
+    char password[20];
+} User;
+
+int isValidUser(const char* username, const char* password, User* users, int maxUsers) {
+    for (int i = 0; i < maxUsers; i++) {
+        if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int main() {
     int serverSocket;  // Declare serverSocket before using it
 
@@ -96,26 +114,23 @@ void handleClient(int serverSocket, int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
 
-    typedef struct {
-        char username[20];
-        char password[20];
-    } User;
-
     // Send a welcome message to the client
     const char* welcomeMsg = "Nexus\r\n";
     send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
+
+    User users[MAX_USERS] = {
+        {"admin", "admin"}
+        // Add more users as needed
+    };
 
     const char* userPrompt = "user: ";
     send(clientSocket, userPrompt, strlen(userPrompt), 0);
 
     // Introduce a delay or wait for a response from the client
-    // You might consider using sleep() or another mechanism depending on your needs
-    // For simplicity, I'll use a simple recv without processing the data
     bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
     buffer[bytesRead] = '\0';
 
     // Now 'buffer' contains the user's response (username)
-
     char username[20];
     strcpy(username, buffer);
     printf("Received username: %s\n", username);
@@ -133,25 +148,22 @@ void handleClient(int serverSocket, int clientSocket) {
     strcpy(password, buffer);
     printf("Received password: %s\n", password);
 
-    // Continue with the rest of your code...
+    // Check if the username and password are valid
+    if (isValidUser(username, password, users, MAX_USERS)) {
+        printf("Valid username and password\n");
 
+        const char* banner =
+            "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
+            "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
+            "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
+            "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
+            "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
+            "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
+            "      --**Welcome To Nexus Network**--- ";
 
-    printf("Received username: %s\n", username);
-    printf("Received password: %s\n", password);
+        send(clientSocket, banner, strlen(banner), 0);
 
-    if (isValidUser) {
         while (1) {
-            char* banner =
-                "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
-                "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
-                "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
-                "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
-                "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
-                "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
-                "      --**Welcome To Nexus Network**--- ";
-
-            send(clientSocket, banner, strlen(banner), 0);
-
             // Receive data from the client
             bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 
@@ -170,15 +182,13 @@ void handleClient(int serverSocket, int clientSocket) {
                 *newlinePos = '\0'; // Null-terminate at the newline position
 
                 // Execute the command using the command handler
+                // Assuming executeCommand is a placeholder for your command execution function
                 executeCommand(clientSocket, buffer);
             }
-
-
         }
     } else {
-        // Invalid credentials, you can send a message to the client and handle it accordingly.
+        // Invalid credentials, send an error message to the client
         const char* errorMsg = "Invalid username or password. Please try again.\r\n";
         send(clientSocket, errorMsg, strlen(errorMsg), 0);
-        // Optionally, you can close the connection or implement other actions.
     }
 }
