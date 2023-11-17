@@ -96,18 +96,23 @@ void handleClient(int serverSocket, int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
 
+    // Use struct keyword here
     struct User {
         char username[20];
         char password[20];
-    }
-  
-    // Define an array of users
-    #define MAX_USERS 10
+    };
+
+    // Send a welcome message to the client
+    const char* welcomeMsg = "Nexus\r\n";
+    send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
+
+    // Assuming MAX_USERS is the maximum number of users your system can handle
     struct User users[MAX_USERS] = {
         {"user1", "password1"},
         {"user2", "password2"},
         // Add more users as needed
     };
+
 
 
     // Send a welcome message to the client
