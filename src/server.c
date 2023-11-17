@@ -9,10 +9,42 @@
 #include "commands/help_command.h"
 
 #define PORT 23
+#define TCP 8080
 #define MAX_CLIENTS 5
 #define BUFFER_SIZE 1024
 
 void handleClient(int serverSocket, int clientSocket);
+
+int com() {
+    printf("Communications Starting\n");
+}
+
+int cnc() {
+    printf("cnc services starting\n");
+}
+
+int con() {
+    printf("TELNET PORT : %d\n", PORT);
+    return 0;
+}
+
+
+// Assuming MAX_USERS is the maximum number of users your system can handle
+#define MAX_USERS 10
+
+typedef struct {
+    char username[20];
+    char password[20];
+} User;
+
+int isValidUser(const char* username, const char* password, User* users, int maxUsers) {
+    for (int i = 0; i < maxUsers; i++) {
+        if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 int main() {
     int serverSocket;  // Declare serverSocket before using it
@@ -48,7 +80,10 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    printf("Telnet server is listening on port %d...\n", PORT);
+    printf("Nexus Net Starting ... \n");
+    con();
+    com();
+    cnc();
 
     while (1) {
         int clientSocket = accept(serverSocket, NULL, NULL);
@@ -79,31 +114,23 @@ void handleClient(int serverSocket, int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
 
-    int isvalid = 0;
+    // Send a welcome message to the client
+    const char* welcomeMsg = "Nexus\r\n";
+    send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
 
-struct User {
-    char username[20];
-    char password[20];
-};
-#define MAX_USERS 10
-    struct User users[MAX_USERS] = {
-        {"admin", "admin"},
-
+    User users[MAX_USERS] = {
+        {"admin", "admin"}
+        // Add more users as needed
     };
 
-    const char* userprompt = "user: ";
-    send(clientSocket, userprompt, strlen(userprompt), 0);
+    const char* userPrompt = "user: ";
+    send(clientSocket, userPrompt, strlen(userPrompt), 0);
 
-
-
+    // Introduce a delay or wait for a response from the client
     bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-    if (bytesRead <= 0) {
-        return;
-    }
-
-
     buffer[bytesRead] = '\0';
 
+    // Now 'buffer' contains the user's response (username)
     char username[20];
     strcpy(username, buffer);
     printf("Received username: %s\n", username);
@@ -114,13 +141,6 @@ struct User {
 
     // Receive the password from the client
     bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-
-    if (bytesRead <= 0) {
-        // If the client disconnects or an error occurs, return immediately
-        return;
-    }
-
-    // Process the received data
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
     // Now 'buffer' contains the password entered by the client
@@ -128,28 +148,47 @@ struct User {
     strcpy(password, buffer);
     printf("Received password: %s\n", password);
 
+    // Check if the username and password are valid
+    if (isValidUser(username, password, users, MAX_USERS)) {
+        printf("Valid username and password\n");
 
-    for (int i = 0; i < MAX_USERS; i++) {
-        if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
-            isvalid = 1;
-            break;
-        }
-    }
-    if(isvalid) {
-        printf("Welcome\r\n");
+        const char* banner =
+            "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
+            "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
+            "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
+            "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
+            "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
+            "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
+            "      --**Welcome To Nexus Network**--- ";
+
+        send(clientSocket, banner, strlen(banner), 0);
+
         while (1) {
             // Receive data from the client
             bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 
             if (bytesRead <= 0) {
-                break;}
-            buffer[bytesRead] = '\0';
+                // If the client disconnects or an error occurs, break from the loop
+                break;
+            }
+
+            // Process the received data
+            buffer[bytesRead] = '\0'; // Null-terminate the received data
+
+            // Check if the received data contains a newline character
             char* newlinePos = strchr(buffer, '\n');
-            if (newlinePos != NULL) {*newlinePos = '\0';
+            if (newlinePos != NULL) {
+                // If a newline character is found, treat it as the end of a line
+                *newlinePos = '\0'; // Null-terminate at the newline position
+
+                // Execute the command using the command handler
+                // Assuming executeCommand is a placeholder for your command execution function
                 executeCommand(clientSocket, buffer);
-            } else {
-                send(clientSocket, buffer, bytesRead, 0);
             }
         }
+    } else {
+        // Invalid credentials, send an error message to the client
+        const char* errorMsg = "Invalid username or password. Please try again.\r\n";
+        send(clientSocket, errorMsg, strlen(errorMsg), 0);
     }
 }
