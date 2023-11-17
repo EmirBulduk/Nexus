@@ -105,22 +105,20 @@ void handleClient(int serverSocket, int clientSocket) {
     const char* welcomeMsg = "Nexus\r\n";
     send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
 
-    // Assuming MAX_USERS is the maximum number of users your system can handle
-    #define MAX_USERS 10
-    User users[MAX_USERS] = {
-        {"admin", "admin"}
-        // Add more users as needed
-    };
+    const char* userPrompt = "user: ";
+    send(clientSocket, userPrompt, strlen(userPrompt), 0);
 
-    int isValidUser = 0;
+    // Introduce a delay or wait for a response from the client
+    // You might consider using sleep() or another mechanism depending on your needs
+    // For simplicity, I'll use a simple recv without processing the data
+    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+    buffer[bytesRead] = '\0';
 
-    // Check if the username is valid
-    char* username = buffer;
+    // Now 'buffer' contains the user's response (username)
 
-    // Allow login for any user with the username "admin"
-    if (strcmp(username, "admin") == 0) {
-        isValidUser = 1;
-    }
+    char username[20];
+    strcpy(username, buffer);
+    printf("Received username: %s\n", username);
 
     // Send a prompt for the password
     const char* passwordPrompt = "password: ";
@@ -128,9 +126,15 @@ void handleClient(int serverSocket, int clientSocket) {
 
     // Receive the password from the client
     bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-    buffer[bytesRead] = '\0';
+    buffer[bytesRead] = '\0'; // Null-terminate the received data
 
-    char* password = buffer;
+    // Now 'buffer' contains the password entered by the client
+    char password[20];
+    strcpy(password, buffer);
+    printf("Received password: %s\n", password);
+
+    // Continue with the rest of your code...
+
 
     printf("Received username: %s\n", username);
     printf("Received password: %s\n", password);
