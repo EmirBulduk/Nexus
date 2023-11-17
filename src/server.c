@@ -17,12 +17,18 @@
 
 void handleClient(int serverSocket, int clientSocket);
 
-
 int com() {
+    printf("Communications Starting\n");
+}
 
-    printf("aaaaa\n");
+int cnc() {
+    printf("cnc serverices starting\n");
+}
+
+int con() {
+    printf("\n");
+    printf("TELNET PORT : %d\n", PORT);
     return 0;
-
 }
 
 int main() {
@@ -60,9 +66,9 @@ int main() {
     }
 
     printf("Nexus Net Starting ... \n");
-    printf("TELNET PORT : %d\n", PORT);
-    printf("COMMUNICATIONS STARTING ...\n");
+    con();
     com();
+    cnc();
 
     while (1) {
         int clientSocket = accept(serverSocket, NULL, NULL);
