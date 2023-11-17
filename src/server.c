@@ -61,7 +61,23 @@ int authenticateUser(int clientSocket) {
 }
 
 int main() {
-    // ... (unchanged code)
+    int serverSocket;  // Declare serverSocket before using it
+
+    // Initialize the command handler
+    initializeCommandHandler();
+
+    // Register commands
+    registerCommand("help", executeHelpCommand);
+    registerCommand("echo", executeEchoCommand);
+    // Register other commands similarly...
+
+    serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket == -1) {
+        perror("Socket creation failed");
+        exit(EXIT_FAILURE);
+    }
+
+    // ... (previous code)
 
     while (1) {
         int clientSocket = accept(serverSocket, NULL, NULL);
