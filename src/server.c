@@ -99,8 +99,8 @@ void handleClient(int serverSocket, int clientSocket) {
     struct User {
         char username[20];
         char password[20];
-    };
-
+    }
+  
     // Define an array of users
     #define MAX_USERS 10
     struct User users[MAX_USERS] = {
@@ -108,6 +108,7 @@ void handleClient(int serverSocket, int clientSocket) {
         {"user2", "password2"},
         // Add more users as needed
     };
+
 
     // Send a welcome message to the client
     const char* welcomeMsg = "Nexus\r\n";
