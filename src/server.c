@@ -112,7 +112,7 @@ int main() {
 }
 
 void handleClient(int serverSocket, int clientSocket) {
-    char buffer[BUFFER_SIZE];
+       char buffer[BUFFER_SIZE];
     int bytesRead;
 
     // Send a welcome message to the client
@@ -152,7 +152,10 @@ void handleClient(int serverSocket, int clientSocket) {
     printf("Received password: %s\n", password);
 
     // Check if the username and password are valid
-    if (isValidUser(username, password, users, MAX_USERS)) {
+    int isValid = isValidUser(username, password, users, MAX_USERS);
+    printf("isValidUser: %d\n", isValid);
+
+    if (isValid) {
         printf("Valid username and password\n");
 
         const char* banner =
