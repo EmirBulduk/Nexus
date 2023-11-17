@@ -26,7 +26,6 @@ int cnc() {
 }
 
 int con() {
-    printf("\n");
     printf("TELNET PORT : %d\n", PORT);
     return 0;
 }
@@ -100,8 +99,8 @@ void handleClient(int serverSocket, int clientSocket) {
     int bytesRead;
 
     typedef struct {
-        char username[50];
-        char password[50];
+        char username[20];
+        char password[20];
     } User;
 
     // Send a welcome message to the client
@@ -124,7 +123,6 @@ void handleClient(int serverSocket, int clientSocket) {
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
     // Check if the username is valid
-    char* username = buffer;
 
     // Send a prompt for the password
     const char* passwordPrompt = "password: ";
@@ -134,19 +132,29 @@ void handleClient(int serverSocket, int clientSocket) {
     bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
+    // Inside the loop where username and password are entered:
+    // ...
+
+    // Check if the username is valid
+    char* username = buffer;
+
     // Check if the password is valid
     char* password = buffer;
 
-
-
+    printf("Received username: %s\n", username);
+    printf("Received password: %s\n", password);
 
     int isValidUser = 0;
     for (int i = 0; i < MAX_USERS; i++) {
+        printf("Comparing with user: %s, password: %s\n", users[i].username, users[i].password);
         if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
             isValidUser = 1;
             break;
         }
     }
+
+    // ...
+
 
     if (isValidUser) {
         while (1) {
