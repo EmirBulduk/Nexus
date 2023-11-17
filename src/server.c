@@ -99,7 +99,9 @@ void handleClient(int serverSocket, int clientSocket) {
     struct User {
         char username[20];
         char password[20];
-    } users[] = {
+    } 
+    #define MAX_USERS 10
+    users[] = {
         {"user1", "password1"},
         {"user2", "password2"},
         // Add more users as needed
