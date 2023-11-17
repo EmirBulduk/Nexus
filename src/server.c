@@ -131,7 +131,7 @@ struct User {
 
     for (int i = 0; i < MAX_USERS; i++) {
         if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
-            isValidUser = 1;
+            isvalid = 1;
             break;
         }
     }
