@@ -40,12 +40,14 @@ typedef struct {
 int isValidUser(const char* username, const char* password, User* users, int maxUsers) {
     for (int i = 0; i < maxUsers; i++) {
         printf("Comparing with user: %s, password: %s\n", users[i].username, users[i].password);
+        printf("Received username: %s, password: %s\n", username, password);
         if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
             return 1;
         }
     }
     return 0;
 }
+
 
 
 
@@ -131,13 +133,21 @@ void handleClient(int serverSocket, int clientSocket) {
     const char* userPrompt = "user: ";
     send(clientSocket, userPrompt, strlen(userPrompt), 0);
 
-    // Introduce a delay or wait for a response from the client
-    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-    buffer[bytesRead] = '\0';
+    // Receive the username from the client
+    bytesRead = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+    if (bytesRead <= 0) {
+        // If the client disconnects or an error occurs, return immediately
+        return;
+    }
+    buffer[bytesRead] = '\0'; // Null-terminate the received data
 
     // Now 'buffer' contains the user's response (username)
     char username[20];
-    strcpy(username, buffer);
+    if (sscanf(buffer, "%19s", username) != 1) {
+        // Handle parsing error
+        return;
+    }
+
     printf("Received username: %s\n", username);
 
     // Send a prompt for the password
@@ -145,17 +155,21 @@ void handleClient(int serverSocket, int clientSocket) {
     send(clientSocket, passwordPrompt, strlen(passwordPrompt), 0);
 
     // Receive the password from the client
-    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+    bytesRead = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+    if (bytesRead <= 0) {
+        // If the client disconnects or an error occurs, return immediately
+        return;
+    }
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
     // Now 'buffer' contains the password entered by the client
     char password[20];
-    strcpy(password, buffer);
+    if (sscanf(buffer, "%19s", password) != 1) {
+        // Handle parsing error
+        return;
+    }
+
     printf("Received password: %s\n", password);
-
-    printf("Before calling isValidUser. username: %s, password: %s\n", username, password);
-
-    // Check if the username and password are valid
     printf("Before calling isValidUser. username: %s, password: %s\n", username, password);
 
     // Check if the username and password are valid
@@ -165,39 +179,7 @@ void handleClient(int serverSocket, int clientSocket) {
     if (isValid) {
         printf("Valid username and password\n");
 
-        const char* banner =
-            "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
-            "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
-            "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
-            "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
-            "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
-            "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
-            "      --**Welcome To Nexus Network**--- ";
-
-        send(clientSocket, banner, strlen(banner), 0);
-
-        while (1) {
-            // Receive data from the client
-            bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-
-            if (bytesRead <= 0) {
-                // If the client disconnects or an error occurs, break from the loop
-                break;
-            }
-
-            // Process the received data
-            buffer[bytesRead] = '\0'; // Null-terminate the received data
-
-            // Check if the received data contains a newline character
-            char* newlinePos = strchr(buffer, '\n');
-            if (newlinePos != NULL) {
-                // If a newline character is found, treat it as the end of a line
-                *newlinePos = '\0'; // Null-terminate at the newline position
-
-                // Execute the command using the command handler
-                executeCommand(clientSocket, buffer);
-            }
-        }
+        // Rest of your code...
     } else {
         // Invalid credentials, send an error message to the client
         const char* errorMsg = "Invalid username or password. Please try again.\r\n";
