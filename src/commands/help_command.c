@@ -21,7 +21,7 @@ void executeHelpCommand(int clientSocket, const char* args) {
                                        "      Nexus     \r\n"
                                        "connected bots: %d\r\n"
                                        "registered commands: %d\r\n"
-                                       "Status: %d"
+                                       "Status: %S"
                                        "----------------\r\n", bots, commandCount, STATS);
 
     send(clientSocket, helpMsg, strlen(helpMsg), 0);
