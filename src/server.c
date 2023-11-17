@@ -102,15 +102,12 @@ void handleClient(int serverSocket, int clientSocket) {
         char password[20];
     };
 
-
- #define MAX_USERS 10
+    #define MAX_USERS 10
     struct User users[MAX_USERS] = {
         {"user1", "password1"},
         {"user2", "password2"},
         // Add more users as needed
     };
-
-
 
     // Send a welcome message to the client
     const char* welcomeMsg = "Nexus\r\n";
@@ -168,27 +165,22 @@ void handleClient(int serverSocket, int clientSocket) {
 
             // Execute the command using the command handler
             executeCommand(clientSocket, buffer);
+        }
+
+        // Check if the username and password are valid
+        int isValidUser = 0;
+        for (int i = 0; i < MAX_USERS; i++) {
+            if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, buffer) == 0) {
+                isValidUser = 1;
+                break;
+            }
+        }
+
+        if (isValidUser) {
+            // Continue processing commands for the valid user
+            printf("Valid username and password\n");
         } else {
-            // If the received data does not contain a newline character,
-            // assume that the password is on a separate line
-            char password[20];
-            strcpy(password, buffer);
-
-            // Check if the username and password are valid
-            int isValidUser = 0;
-            for (int i = 0; i < MAX_USERS; i++) {
-                if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
-                    isValidUser = 1;
-                    break;
-                }
-            }
-
-            if (isValidUser) {
-                // Continue processing commands for the valid user
-                printf("Valid username and password\n");
-            } else {
-                printf("Invalid username or password\n");
-            }
+            printf("Invalid username or password\n");
         }
     }
 }
