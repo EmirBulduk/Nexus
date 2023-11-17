@@ -103,7 +103,7 @@ void handleClient(int serverSocket, int clientSocket) {
     };
 
 
-    // Assuming MAX_USERS is the maximum number of users your system can handle
+ #define MAX_USERS 10
     struct User users[MAX_USERS] = {
         {"user1", "password1"},
         {"user2", "password2"},
