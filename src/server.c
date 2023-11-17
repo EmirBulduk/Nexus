@@ -121,7 +121,8 @@ void handleClient(int serverSocket, int clientSocket) {
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
     // Check if the username is valid
-    char* username = buffer;
+    char username[20];
+    strcpy(username, buffer);
 
     // Send a prompt for the password
     const char* passwordPrompt = "password: ";
@@ -132,7 +133,9 @@ void handleClient(int serverSocket, int clientSocket) {
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
     // Check if the password is valid
-    char* password = buffer;
+    char password[20];
+    strcpy(password, buffer);
+
 
     printf("Received username: %s\n", username);
     printf("Received password: %s\n", password);
