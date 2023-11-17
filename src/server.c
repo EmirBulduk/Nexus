@@ -39,12 +39,14 @@ typedef struct {
 
 int isValidUser(const char* username, const char* password, User* users, int maxUsers) {
     for (int i = 0; i < maxUsers; i++) {
+        printf("Comparing with user: %s, password: %s\n", users[i].username, users[i].password);
         if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
-            return 1; // Found a match
+            return 1;
         }
     }
-    return 0; // No match found
+    return 0;
 }
+
 
 
 int main() {
@@ -151,8 +153,16 @@ void handleClient(int serverSocket, int clientSocket) {
     strcpy(password, buffer);
     printf("Received password: %s\n", password);
 
+    printf("Before calling isValidUser. username: %s, password: %s\n", username, password);
+
     // Check if the username and password are valid
-    if (isValidUser(username, password, users, MAX_USERS)) {
+    printf("Before calling isValidUser. username: %s, password: %s\n", username, password);
+
+    // Check if the username and password are valid
+    int isValid = isValidUser(username, password, users, MAX_USERS);
+    printf("isValidUser: %d\n", isValid);
+
+    if (isValid) {
         printf("Valid username and password\n");
 
         const char* banner =
