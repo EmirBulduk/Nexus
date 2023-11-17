@@ -102,9 +102,6 @@ void handleClient(int serverSocket, int clientSocket) {
         char password[20];
     };
 
-    // Send a welcome message to the client
-    const char* welcomeMsg = "Nexus\r\n";
-    send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
 
     // Assuming MAX_USERS is the maximum number of users your system can handle
     struct User users[MAX_USERS] = {
