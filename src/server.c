@@ -128,26 +128,12 @@ void handleClient(int serverSocket, int clientSocket) {
 
     // Receive the password from the client
     bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-    buffer[bytesRead] = '\0'; // Null-terminate the received data
+    buffer[bytesRead] = '\0';
 
-    // Check if the password is valid
     char* password = buffer;
 
     printf("Received username: %s\n", username);
     printf("Received password: %s\n", password);
-
-    if (isValidUser) {
-        // Rest of the code remains the same
-        while (1) {
-            // ...
-        }
-    } else {
-        // Invalid credentials, you can send a message to the client and handle it accordingly.
-        const char* errorMsg = "Invalid username or password. Please try again.\r\n";
-        send(clientSocket, errorMsg, strlen(errorMsg), 0);
-        // Optionally, you can close the connection or implement other actions.
-    }
-
 
     if (isValidUser) {
         while (1) {
