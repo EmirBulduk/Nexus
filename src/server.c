@@ -99,19 +99,27 @@ void handleClient(int serverSocket, int clientSocket) {
     struct User {
         char username[20];
         char password[20];
-    } 
+    }
+  
+    // Define an array of users
     #define MAX_USERS 10
-    users[] = {
+    struct User users[MAX_USERS] = {
         {"user1", "password1"},
         {"user2", "password2"},
         // Add more users as needed
     };
 
+
     // Send a welcome message to the client
     const char* welcomeMsg = "Nexus\r\n";
     send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
 
-    // Assuming MAX_USERS is the maximum number of users your system can handle
+    // Send a prompt for the username
+    const char* usernamePrompt = "user: ";
+    send(clientSocket, usernamePrompt, strlen(usernamePrompt), 0);
+
+    // Receive the username from the client
+    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 
     if (bytesRead <= 0) {
         // If the client disconnects or an error occurs, return immediately
@@ -121,7 +129,8 @@ void handleClient(int serverSocket, int clientSocket) {
     // Process the received data
     buffer[bytesRead] = '\0'; // Null-terminate the received data
 
-char* newlinePos = strchr(buffer, '\n');
+    // Check if the received data contains a newline character
+    char* newlinePos = strchr(buffer, '\n');
     if (newlinePos != NULL) {
         // If a newline character is found, treat it as the end of a line
         *newlinePos = '\0'; // Null-terminate at the newline position
@@ -133,6 +142,10 @@ char* newlinePos = strchr(buffer, '\n');
         // assume that the username and password are on separate lines
         char username[20];
         strcpy(username, buffer);
+
+        // Send a prompt for the password
+        const char* passwordPrompt = "password: ";
+        send(clientSocket, passwordPrompt, strlen(passwordPrompt), 0);
 
         // Receive the password from the client
         bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
@@ -170,7 +183,7 @@ char* newlinePos = strchr(buffer, '\n');
 
             if (isValidUser) {
                 // Continue processing commands for the valid user
-                printf("yep its working\r\n");
+                printf("Valid username and password\n");
             } else {
                 printf("Invalid username or password\n");
             }
