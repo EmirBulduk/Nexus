@@ -96,97 +96,82 @@ void handleClient(int serverSocket, int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
 
-    typedef struct {
+    struct User {
         char username[20];
         char password[20];
-    } User;
+    } users[] = {
+        {"user1", "password1"},
+        {"user2", "password2"},
+        // Add more users as needed
+    };
 
     // Send a welcome message to the client
     const char* welcomeMsg = "Nexus\r\n";
     send(clientSocket, welcomeMsg, strlen(welcomeMsg), 0);
 
     // Assuming MAX_USERS is the maximum number of users your system can handle
-    #define MAX_USERS 10
-    User users[MAX_USERS] = {
-        {"admin", "admin"}
-        // Add more users as needed
-    };
 
-    // Send a prompt for the username
-    const char* usernamePrompt = "user: ";
-    send(clientSocket, usernamePrompt, strlen(usernamePrompt), 0);
-
-    // Receive the username from the client
-    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-    buffer[bytesRead] = '\0'; // Null-terminate the received data
-
-    // Check if the username is valid
-    char username[20];
-    strcpy(username, buffer);
-
-    // Send a prompt for the password
-    const char* passwordPrompt = "password: ";
-    send(clientSocket, passwordPrompt, strlen(passwordPrompt), 0);
-
-    // Receive the password from the client
-    bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-    buffer[bytesRead] = '\0'; // Null-terminate the received data
-
-    // Check if the password is valid
-    char password[20];
-    strcpy(password, buffer);
-
-
-    printf("Received username: %s\n", username);
-    printf("Received password: %s\n", password);
-
-    int isValidUser = 0;
-    for (int i = 0; i < MAX_USERS; i++) {
-        printf("Comparing with user: %s, password: %s\n", users[i].username, users[i].password);
-        if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
-            isValidUser = 1;
-            break;
-        }
+    if (bytesRead <= 0) {
+        // If the client disconnects or an error occurs, return immediately
+        return;
     }
 
-    if (isValidUser) {
-        while (1) {
-            char* banner =
-                "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
-                "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
-                "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
-                "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
-                "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
-                "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
-                "      --**Welcome To Nexus Network**--- \r\n";
+    // Process the received data
+    buffer[bytesRead] = '\0'; // Null-terminate the received data
 
-            send(clientSocket, banner, strlen(banner), 0);
+char* newlinePos = strchr(buffer, '\n');
+    if (newlinePos != NULL) {
+        // If a newline character is found, treat it as the end of a line
+        *newlinePos = '\0'; // Null-terminate at the newline position
 
-            // Receive data from the client
-            bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+        // Execute the command using the command handler
+        executeCommand(clientSocket, buffer);
+    } else {
+        // If the received data does not contain a newline character,
+        // assume that the username and password are on separate lines
+        char username[20];
+        strcpy(username, buffer);
 
-            if (bytesRead <= 0) {
-                // If the client disconnects or an error occurs, break from the loop
-                break;
+        // Receive the password from the client
+        bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+
+        if (bytesRead <= 0) {
+            // If the client disconnects or an error occurs, return immediately
+            return;
+        }
+
+        // Process the received data
+        buffer[bytesRead] = '\0'; // Null-terminate the received data
+
+        // Check if the received data contains a newline character
+        newlinePos = strchr(buffer, '\n');
+        if (newlinePos != NULL) {
+            // If a newline character is found, treat it as the end of a line
+            *newlinePos = '\0'; // Null-terminate at the newline position
+
+            // Execute the command using the command handler
+            executeCommand(clientSocket, buffer);
+        } else {
+            // If the received data does not contain a newline character,
+            // assume that the password is on a separate line
+            char password[20];
+            strcpy(password, buffer);
+
+            // Check if the username and password are valid
+            int isValidUser = 0;
+            for (int i = 0; i < MAX_USERS; i++) {
+                if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
+                    isValidUser = 1;
+                    break;
+                }
             }
 
-            // Process the received data
-            buffer[bytesRead] = '\0'; // Null-terminate the received data
-
-            // Check if the received data contains a newline character
-            char* newlinePos = strchr(buffer, '\n');
-            if (newlinePos != NULL) {
-                // If a newline character is found, treat it as the end of a line
-                *newlinePos = '\0'; // Null-terminate at the newline position
-
-                // Execute the command using the command handler
-                executeCommand(clientSocket, buffer);
+            if (isValidUser) {
+                // Continue processing commands for the valid user
+                printf("yep its working\r\n");
+            } else {
+                printf("Invalid username or password\n");
             }
         }
-    } else {
-        // Invalid credentials, you can send a message to the client and handle it accordingly.
-        const char* errorMsg = "Invalid username or password. Please try again.\r\n";
-        send(clientSocket, errorMsg, strlen(errorMsg), 0);
-        // Optionally, you can close the connection or implement other actions.
     }
 }
