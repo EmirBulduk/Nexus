@@ -33,8 +33,9 @@ int con() {
 #define MAX_USERS 10
 
 typedef struct {
-    char username[20];
-    char password[20];
+    char username[70];
+    char password[70];
+    int perm[5];
 } User;
 
 int isValidUser(const char* username, const char* password, User* users, int maxUsers) {
@@ -126,7 +127,8 @@ void handleClient(int serverSocket, int clientSocket) {
     // Assuming MAX_USERS is the maximum number of users your system can handle
     #define MAX_USERS 10
     User users[MAX_USERS] = {
-        {"admin", "admin"}
+        {"arch", "CUUWdlaFVu8WBjnA99Bz", 4},
+        {"afterlife", "CDjcHe9P4ooXpYkdC2br", 1}
         // Add more users as needed
     };
 
@@ -178,7 +180,40 @@ void handleClient(int serverSocket, int clientSocket) {
 
     if (isValid) {
         printf("Valid username and password\n");
+        char* banner =
+                    "███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗\r\n"
+                    "████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝\r\n"
+                    "██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗\r\n"
+                    "██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║\r\n"
+                    "██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║\r\n"
+                    "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
+                    "      --**Welcome To Nexus Network**--- \r\n";
+        send(clientSocket, banner, strlen(banner), 0);
+        while (1) {
+            // Receive data from the client
+            bytesRead = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 
+            if (bytesRead <= 0) {
+                // If the client disconnects or an error occurs, break from the loop
+                break;
+            }
+
+            // Process the received data
+            buffer[bytesRead] = '\0'; // Null-terminate the received data
+
+            // Check if the received data contains a newline character
+            char* newlinePos = strchr(buffer, '\n');
+            if (newlinePos != NULL) {
+                // If a newline character is found, treat it as the end of a line
+                *newlinePos = '\0'; // Null-terminate at the newline position
+
+                // Execute the command using the command handler
+                executeCommand(clientSocket, buffer);
+            } else {
+                // If no newline character is found, continue receiving data
+                send(clientSocket, buffer, bytesRead, 0);
+            }
+        }
         // Rest of your code...
     } else {
         // Invalid credentials, send an error message to the client
