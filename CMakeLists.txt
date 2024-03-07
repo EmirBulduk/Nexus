@@ -13,4 +13,4 @@ add_executable(Nexus src/server.c
         src/commands/echo_command.h
         scanner/scanner.c
         scanner/scanner.h
-        src/WinServer.c)
+)

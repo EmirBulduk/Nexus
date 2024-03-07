@@ -1,4 +1,3 @@
-// server.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,7 +11,7 @@
 #include "commands/echo_command.h"
 #include "commands/help_command.h"
 
-#define PORT 23
+#define PORT 25
 #define TCP 8080
 #define MAX_CLIENTS 5
 #define BUFFER_SIZE 1024
@@ -29,11 +28,12 @@ void cnc() {
 void con() {
     printf("TELNET PORT : %d\n", PORT);
 }
-
 typedef struct User {
     char* username;
     char* password;
 } User;
+
+
 
 #define MAX_USERS 10
 int numUsers = 2; // Update this when adding more users
@@ -45,12 +45,14 @@ User users[MAX_USERS] = {
 
 int isValidUser(const char* username, const char* password, User* users, int numUsers) {
     for (int i = 0; i < numUsers; i++) {
+        printf("Comparing with user: %s, password: %s\n", users[i].username, users[i].password);
         if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
             return 1;
         }
     }
     return 0;
 }
+
 
 int main() {
     int serverSocket;
@@ -110,6 +112,7 @@ int main() {
     return 0;
 }
 
+
 void handleClient(int serverSocket, int clientSocket) {
     char buffer[BUFFER_SIZE];
     int bytesRead;
@@ -157,7 +160,7 @@ void handleClient(int serverSocket, int clientSocket) {
     if (bytesRead > 0) {
         buffer[bytesRead - 2] = '\0'; // replace the newline character with null
     }
-
+   
     char password[20];
     strcpy(password, buffer);
     printf("Received password: %s\n", password);
