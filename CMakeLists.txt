@@ -22,4 +22,12 @@ add_executable(Nexus cnc/server.c
         cnc/commands/info/ping_command.c
         cnc/commands/info/ping_command.h
         cnc/commands/info/whois.c
-        cnc/commands/info/whois.h)
+        cnc/commands/info/whois.h
+        cnc/commands/attack/ack_command.c
+        cnc/commands/attack/ack_command.h
+        cnc/commands/attack/pod_command.c
+        cnc/commands/attack/pod_command.h
+        cnc/commands/attack/land_command.c
+        cnc/commands/attack/land_command.h
+        cnc/commands/attack/udp_command.c
+        cnc/commands/attack/udp_command.h)
