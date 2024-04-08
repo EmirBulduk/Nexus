@@ -23,5 +23,5 @@ void executeSyncommand(int clientSocket, const char* args) {
 }
 __attribute__((constructor))
 void registerattackcommand() {
-    registerCommand("attack", executeSyncommand);
+    registerCommand("syn", executeSyncommand);
 }

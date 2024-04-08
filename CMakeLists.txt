@@ -18,4 +18,8 @@ add_executable(Nexus cnc/server.c
         cnc/commands/Attack_command.c
         cnc/commands/Attack_command.h
         cnc/commands/attack/syn_command.c
-        cnc/commands/attack/syn_command.h)
+        cnc/commands/attack/syn_command.h
+        cnc/commands/info/ping_command.c
+        cnc/commands/info/ping_command.h
+        cnc/commands/info/whois.c
+        cnc/commands/info/whois.h)

@@ -4,5 +4,8 @@
 
 #ifndef NEXUS_SYN_COMMAND_H
 #define NEXUS_SYN_COMMAND_H
+#include "../cman.h"
+
+void executeSyncommand(int clientSocket, const char* args);
 
 #endif //NEXUS_SYN_COMMAND_H
