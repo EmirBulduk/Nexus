@@ -12,4 +12,8 @@ add_executable(Nexus cnc/server.c
         cnc/commands/echo_command.c
         cnc/commands/echo_command.h
         scanner/scanner.c
-        scanner/scanner.h)
+        scanner/scanner.h
+        cnc/commands/bots_command.c
+        cnc/commands/bots_command.h
+        cnc/commands/Attack_command.c
+        cnc/commands/Attack_command.h)

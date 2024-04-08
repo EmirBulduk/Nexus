@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/buldu/Desktop/Nexus/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target Nexus
 
@@ -49,35 +49,47 @@ cmake_ninja_workdir = C$:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug/
 
 build cmake_object_order_depends_target_Nexus: phony || CMakeFiles/Nexus.dir
 
-build CMakeFiles/Nexus.dir/cnc/server.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/Arch64/CLionProjects/Nexus/cnc/server.c || cmake_object_order_depends_target_Nexus
+build CMakeFiles/Nexus.dir/cnc/server.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/server.c || cmake_object_order_depends_target_Nexus
   DEP_FILE = CMakeFiles\Nexus.dir\cnc\server.c.obj.d
   FLAGS = -g -std=gnu2x -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Nexus.dir
   OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc
 
-build CMakeFiles/Nexus.dir/cnc/commands/cman.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/Arch64/CLionProjects/Nexus/cnc/commands/cman.c || cmake_object_order_depends_target_Nexus
+build CMakeFiles/Nexus.dir/cnc/commands/cman.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/cman.c || cmake_object_order_depends_target_Nexus
   DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\cman.c.obj.d
   FLAGS = -g -std=gnu2x -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Nexus.dir
   OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands
 
-build CMakeFiles/Nexus.dir/cnc/commands/help_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/Arch64/CLionProjects/Nexus/cnc/commands/help_command.c || cmake_object_order_depends_target_Nexus
+build CMakeFiles/Nexus.dir/cnc/commands/help_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/help_command.c || cmake_object_order_depends_target_Nexus
   DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\help_command.c.obj.d
   FLAGS = -g -std=gnu2x -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Nexus.dir
   OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands
 
-build CMakeFiles/Nexus.dir/cnc/commands/echo_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/Arch64/CLionProjects/Nexus/cnc/commands/echo_command.c || cmake_object_order_depends_target_Nexus
+build CMakeFiles/Nexus.dir/cnc/commands/echo_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/echo_command.c || cmake_object_order_depends_target_Nexus
   DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\echo_command.c.obj.d
   FLAGS = -g -std=gnu2x -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Nexus.dir
   OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands
 
-build CMakeFiles/Nexus.dir/scanner/scanner.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/Arch64/CLionProjects/Nexus/scanner/scanner.c || cmake_object_order_depends_target_Nexus
+build CMakeFiles/Nexus.dir/scanner/scanner.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/scanner/scanner.c || cmake_object_order_depends_target_Nexus
   DEP_FILE = CMakeFiles\Nexus.dir\scanner\scanner.c.obj.d
   FLAGS = -g -std=gnu2x -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Nexus.dir
   OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\scanner
+
+build CMakeFiles/Nexus.dir/cnc/commands/bots_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/bots_command.c || cmake_object_order_depends_target_Nexus
+  DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\bots_command.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Nexus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands
+
+build CMakeFiles/Nexus.dir/cnc/commands/Attack_command.c.obj: C_COMPILER__Nexus_unscanned_Debug C$:/Users/buldu/Desktop/Nexus/cnc/commands/Attack_command.c || cmake_object_order_depends_target_Nexus
+  DEP_FILE = CMakeFiles\Nexus.dir\cnc\commands\Attack_command.c.obj.d
+  FLAGS = -g -std=gnu2x -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Nexus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Nexus.dir\cnc\commands
 
 
 # =============================================================================
@@ -87,7 +99,7 @@ build CMakeFiles/Nexus.dir/scanner/scanner.c.obj: C_COMPILER__Nexus_unscanned_De
 #############################################
 # Link the executable Nexus.exe
 
-build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/cnc/server.c.obj CMakeFiles/Nexus.dir/cnc/commands/cman.c.obj CMakeFiles/Nexus.dir/cnc/commands/help_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/echo_command.c.obj CMakeFiles/Nexus.dir/scanner/scanner.c.obj
+build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/cnc/server.c.obj CMakeFiles/Nexus.dir/cnc/commands/cman.c.obj CMakeFiles/Nexus.dir/cnc/commands/help_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/echo_command.c.obj CMakeFiles/Nexus.dir/scanner/scanner.c.obj CMakeFiles/Nexus.dir/cnc/commands/bots_command.c.obj CMakeFiles/Nexus.dir/cnc/commands/Attack_command.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Nexus.dir
@@ -102,7 +114,7 @@ build Nexus.exe: C_EXECUTABLE_LINKER__Nexus_Debug CMakeFiles/Nexus.dir/cnc/serve
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Arch64\CLionProjects\Nexus\cmake-build-debug && "C:\Users\Arch64\AppData\Local\Programs\CLion Nova\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\buldu\Desktop\Nexus\cmake-build-debug && C:\Users\buldu\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -113,7 +125,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Arch64\CLionProjects\Nexus\cmake-build-debug && "C:\Users\Arch64\AppData\Local\Programs\CLion Nova\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Arch64\CLionProjects\Nexus -BC:\Users\Arch64\CLionProjects\Nexus\cmake-build-debug"
+  COMMAND = cmd.exe /C "cd /D C:\Users\buldu\Desktop\Nexus\cmake-build-debug && C:\Users\buldu\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe --regenerate-during-build -SC:\Users\buldu\Desktop\Nexus -BC:\Users\buldu\Desktop\Nexus\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -131,7 +143,7 @@ build Nexus: phony Nexus.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Arch64/CLionProjects/Nexus/cmake-build-debug
+# Folder: C:/Users/buldu/Desktop/Nexus/cmake-build-debug
 
 build all: phony Nexus.exe
 
@@ -142,14 +154,14 @@ build all: phony Nexus.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/Users/Arch64/CLionProjects/Nexus/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.0/CMakeCCompiler.cmake CMakeFiles/3.27.0/CMakeRCCompiler.cmake CMakeFiles/3.27.0/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/Users/buldu/Desktop/Nexus/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Users/Arch64/AppData/Local/Programs/CLion$ Nova/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/Users/Arch64/CLionProjects/Nexus/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.0/CMakeCCompiler.cmake CMakeFiles/3.27.0/CMakeRCCompiler.cmake CMakeFiles/3.27.0/CMakeSystem.cmake: phony
+build C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Users/buldu/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/Users/buldu/Desktop/Nexus/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake: phony
 
 
 #############################################
