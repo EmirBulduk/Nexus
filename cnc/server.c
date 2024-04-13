@@ -11,7 +11,7 @@
 #include "commands/attack/syn_command.h"
 #include "commands/info/whois.h"
 
-#define PORT 23
+#define PORT 1023
 #define TCP 8080
 #define MAX_CLIENTS 5
 #define BUFFER_SIZE 1024
@@ -61,9 +61,6 @@ int main() {
 
     registerCommand("help", executeHelpCommand);
     registerCommand("echo", executeEchoCommand);
-    registerCommand("attack", executeAttackcommand);
-    registerCommand("syn", executeSyncommand);
-    registerCommand("whois", executeWhoiscommand);
 
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket == -1) {
@@ -124,7 +121,10 @@ void handleClient(int serverSocket, int clientSocket) {
 
     #define MAX_USERS 10
     User users[MAX_USERS] = {
-        {"arch", "CUUWdlaFVu8WBjnA99Bz", 4},
+            //not çok uzun şifre girmeyin çünkü buffer overflow olabilir
+            //ayrıca login sırasında telnet ile ilgili sorun çıkartabilir basit şifreler seçiniz!
+            /*Ayrıca Buraya hardcoded şekilde kullanmayın*/
+            {"arch", "admin", 4},
         {"afterlife", "CDjcHe9P4ooXpYkdC2br", 1}
     };
 
