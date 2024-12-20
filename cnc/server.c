@@ -6,7 +6,7 @@
 #include <arpa/inet.h>
 #include "commands/cman.h"
 #include "commands/echo_command.h"
-#include "commands/attack_command.h"
+#include "commands/attack_command.h" // bunu çözcem
 #include "commands/help_command.h"
 #include "commands/attack/syn_command.h"
 #include "commands/info/whois.h"
